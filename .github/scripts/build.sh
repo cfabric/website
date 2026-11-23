@@ -119,7 +119,7 @@ PYEOF
 {
   "pr_number": ${pr_number:-null},
   "preview_base_path": "${PREVIEW_BASE_PATH}",
-  "preview_url": "https://constructorfabric.github.io/website-previews/pr-${pr_number:-unknown}/"
+  "preview_url": "https://cfabric.github.io/website-previews/pr-${pr_number:-unknown}/"
 }
 JSON
   echo "Wrote ${meta_path}"

@@ -1,5 +1,5 @@
 # Publish Website Preview — privileged publish of an already-built artifact
-# into constructorfabric/website-previews.
+# into cfabric/website-previews.
 #
 # IMPORTANT: this workflow does NOT check out PR code and does NOT execute any
 # code from the artifact. It treats the artifact as opaque static files only.
@@ -117,7 +117,7 @@ jobs:
         run: |
           set -euo pipefail
           # PREVIEW_REPOSITORY is "owner/name"; default to
-          # constructorfabric/website-previews.
+          # cfabric/website-previews.
           preview_repo="${PREVIEW_REPO_VAR:-constructorfabric/website-previews}"
           preview_owner="${preview_repo%%/*}"
           preview_name="${preview_repo##*/}"
@@ -201,7 +201,7 @@ jobs:
       # the base repo, because GraphQL's PR object is owned by the head
       # (fork) repo. The REST endpoint `POST /repos/{owner}/{repo}/issues/
       # {n}/comments` writes to the issue thread on the base repo, which
-      # the App token on constructorfabric/website can authorize.
+      # the App token on cfabric/website can authorize.
       - name: Comment on source PR with preview URL
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}

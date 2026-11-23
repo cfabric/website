@@ -31,7 +31,7 @@ The preview is regenerated on every push to this PR.
 A preview URL will be posted automatically by GitHub Actions after CI succeeds. The format is:
 
 ```
-https://constructorfabric.github.io/website-previews/pr-<NUMBER>/
+https://cfabric.github.io/website-previews/pr-<NUMBER>/
 ```
 
 If you do not see a preview URL on this PR within a few minutes of pushing, see [docs/pr-preview-process.md](docs/pr-preview-process.md) for troubleshooting.

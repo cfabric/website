@@ -1,25 +1,25 @@
 # website-previews — setup instructions
 
-This directory contains starter files for the **`constructorfabric/website-previews`** repository.
+This directory contains starter files for the **`cfabric/website-previews`** repository.
 
-That repository is the destination for pull request previews of `constructorfabric/website`. It is **separate** from the source repository so that contributor-controlled HTML and JavaScript can never run on the production origin (`constructorfabric.org`).
+That repository is the destination for pull request previews of `cfabric/website`. It is **separate** from the source repository so that contributor-controlled HTML and JavaScript can never run on the production origin (`constructorfabric.org`).
 
 ## Why a separate repo?
 
-- Previews are served from `https://constructorfabric.github.io/website-previews/pr-<N>/` — a different origin from production.
+- Previews are served from `https://cfabric.github.io/website-previews/pr-<N>/` — a different origin from production.
 - Only a low-privilege workflow in the source repo uploads preview artifacts. The privileged publishing workflow uses a GitHub App installation token scoped only to `website-previews`, so a compromised PR cannot write to the source repo or any other repo.
 - Old previews are cleaned up automatically by a scheduled workflow in this repo.
 
 ## One-time setup (admin)
 
-1. **Create the repository** `constructorfabric/website-previews` (public).
+1. **Create the repository** `cfabric/website-previews` (public).
 2. **Enable GitHub Pages**: Settings → Pages → Branch: `main`, Folder: `/ (root)`.
 3. **Install the GitHub App** ("Constructor Fabric App" or a dedicated preview app) on this repository with:
    - Repository permissions: **Contents: Read and write**, **Metadata: Read**
 4. **Push the starter files from this directory** to `website-previews`:
    ```bash
-   # from a fresh clone of constructorfabric/website-previews
-   cp -R /path/to/constructorfabric/website/.preview-repository/. .
+   # from a fresh clone of cfabric/website-previews
+   cp -R /path/to/cfabric/website/.preview-repository/. .
    # particularly:
    #   index.html
    #   robots.txt
@@ -27,8 +27,8 @@ That repository is the destination for pull request previews of `constructorfabr
    #   .github/workflows/cleanup-previews.yml
    git add . && git commit -m "Initial preview-repo setup" && git push origin main
    ```
-5. **Configure variables/secrets in the SOURCE repo** (`constructorfabric/website`):
-   - Variables: `AUTOMATION_APP_ID`, `PREVIEW_REPOSITORY=constructorfabric/website-previews`, `PREVIEW_RETENTION_DAYS=30`
+5. **Configure variables/secrets in the SOURCE repo** (`cfabric/website`):
+   - Variables: `AUTOMATION_APP_ID`, `PREVIEW_REPOSITORY=cfabric/website-previews`, `PREVIEW_RETENTION_DAYS=30`
    - Secret: `AUTOMATION_APP_PRIVATE_KEY`
 
 ## Files in this directory
@@ -56,7 +56,7 @@ To force-delete a preview immediately (useful when testing):
 
 ```bash
 gh workflow run cleanup-previews.yml \
-  --repo constructorfabric/website-previews \
+  --repo cfabric/website-previews \
   -f retention_days=0
 ```
 
